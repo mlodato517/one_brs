@@ -25,3 +25,5 @@ Change: 2026-02-13 20:09:34.037357316 -0500
 | BufRead line lens          | 43.734 s | 0.495 s   |
 | count line lens no Discord | 1.296    | 0.036 s   |
 | manual line count          | 5.550 s  | 0.161 s   |
+| -C manual line count       | 2.216 s  | 0.036 s   |
+| -C count line lens         | same b4  | same b4   |
