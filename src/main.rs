@@ -1,3 +1,4 @@
 fn main() {
-    println!("Hello, world!");
+    let path = std::env::args().next_back().expect("Provide a path");
+    println!("{path:?}");
 }
