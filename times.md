@@ -27,4 +27,5 @@ Change: 2026-02-13 20:09:34.037357316 -0500
 | manual line count          | 5.550 s  | 0.161 s   |
 | -C manual line count       | 2.216 s  | 0.036 s   |
 | -C count line lens         | same b4  | same b4   |
-| line count with Buffer     | 2.202 s  |  0.012 s  |
+| line count with Buffer     | 2.202 s  | 0.012 s   |
+| line and len count         | 15.204 s | 0.520 s   |

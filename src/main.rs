@@ -7,9 +7,15 @@ fn main() {
     loop {
         match buf.read(&mut file) {
             Ok(0) => break,
-            Ok(n) => {
-                line_count += buf.buf().iter().filter(|&b| *b == b'\n').count();
-                buf.rollover_at(n);
+            Ok(_) => {
+                let read_data = buf.buf();
+                let mut last = 0;
+                for (i, _b) in read_data.iter().enumerate().filter(|&(_i, b)| *b == b'\n') {
+                    let _line = &read_data[last..i];
+                    last = i + 1;
+                    line_count += 1;
+                }
+                buf.rollover_at(last);
             }
             Err(e) if e.kind() == std::io::ErrorKind::Interrupted => {}
             Err(e) => panic!("Failed read: {e:?}"),
