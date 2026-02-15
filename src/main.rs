@@ -14,15 +14,18 @@ fn main() {
             Ok(n) => {
                 let buf_end = buf_start + n;
                 let read_data = &buf[..buf_end];
+                let mut split = read_data.rsplit(|b| *b == b'\n');
 
-                let mut last = 0;
-                for (i, _b) in read_data.iter().enumerate().filter(|&(_i, b)| *b == b'\n') {
-                    let _line = &read_data[last..i];
-                    last = i + 1;
+                // Count how many bytes belong to a line that is split over this read and the next.
+                let num_partial_bytes = split.next().expect("rsplit guarantee").len();
+
+                for _line in split {
                     line_count += 1;
                 }
-                buf.copy_within(last..buf_end, 0);
-                buf_start = buf_end - last;
+
+                // Checking if num_partial_bytes > 0 seems worse than just doing it every time.
+                buf.copy_within(buf_end - num_partial_bytes..buf_end, 0);
+                buf_start = num_partial_bytes;
             }
             Err(e) if e.kind() == std::io::ErrorKind::Interrupted => {}
             Err(e) => panic!("Failed read: {e:?}"),

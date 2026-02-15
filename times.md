@@ -30,3 +30,4 @@ Change: 2026-02-13 20:09:34.037357316 -0500
 | line count with Buffer     | 2.202 s  | 0.012 s   |
 | line and len count         | 15.204 s | 0.520 s   |
 | remove stupid Buffer       | 15.006 s | 0.407 s   |
+| rsplit                     | 14.224 s | 0.386 s   |
