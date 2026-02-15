@@ -9,27 +9,26 @@ fn main() {
 
     let mut line_count = 0;
     loop {
-        match std::io::Read::read(&mut file, &mut buf[buf_start..]) {
+        let n = match std::io::Read::read(&mut file, &mut buf[buf_start..]) {
             Ok(0) => break,
-            Ok(n) => {
-                let buf_end = buf_start + n;
-                let read_data = &buf[..buf_end];
-                let mut split = read_data.rsplit(|b| *b == b'\n');
-
-                // Count how many bytes belong to a line that is split over this read and the next.
-                let num_partial_bytes = split.next().expect("rsplit guarantee").len();
-
-                for _line in split {
-                    line_count += 1;
-                }
-
-                // Checking if num_partial_bytes > 0 seems worse than just doing it every time.
-                buf.copy_within(buf_end - num_partial_bytes..buf_end, 0);
-                buf_start = num_partial_bytes;
-            }
-            Err(e) if e.kind() == std::io::ErrorKind::Interrupted => {}
+            Ok(n) => n,
+            Err(e) if e.kind() == std::io::ErrorKind::Interrupted => continue,
             Err(e) => panic!("Failed read: {e:?}"),
+        };
+        let buf_end = buf_start + n;
+        let read_data = &buf[..buf_end];
+        let mut split = read_data.rsplit(|b| *b == b'\n');
+
+        // Count how many bytes belong to a line that is split over this read and the next.
+        let num_partial_bytes = split.next().expect("rsplit should return something").len();
+
+        for _line in split {
+            line_count += 1;
         }
+
+        // Checking if num_partial_bytes > 0 seems worse than just doing it every time.
+        buf.copy_within(buf_end - num_partial_bytes..buf_end, 0);
+        buf_start = num_partial_bytes;
     }
     println!("{}", line_count);
 }

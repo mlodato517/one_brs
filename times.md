@@ -31,3 +31,4 @@ Change: 2026-02-13 20:09:34.037357316 -0500
 | line and len count         | 15.204 s | 0.520 s   |
 | remove stupid Buffer       | 15.006 s | 0.407 s   |
 | rsplit                     | 14.224 s | 0.386 s   |
+| refactor to reduce nesting | 14.181 s | 0.369 s   |
