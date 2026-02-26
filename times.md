@@ -23,3 +23,4 @@ Change: 2026-02-13 20:09:34.037357316 -0500
 | file len                          | 617.0 µs | 242.3 µs  |
 | file len from summing read bytes  | 1.518 s  | 0.044 s   |
 | BufRead line lens                 | 43.734 s | 0.495 s   |
+| count \n bytes                    | TODO     | TODO      |
