@@ -16,10 +16,10 @@ Change: 2026-02-13 20:09:34.037357316 -0500
 ```
 ## Timings
 
-| Name             | Time     | Deviation |
-|------------------|----------|-----------|
-| cat > /dev/null  | 1.489 s  | 0.039 s   |
-| getting path arg | 595.5 µs | 209.7 µs  |
-| file len         | 617.0 µs | 242.3 µs  |
-| count line lens  | 1.518 s  | 0.044 s   |
-| BufRead line lens| 43.734 s | 0.495 s   |
+| Name                              | Time     | Deviation |
+|-----------------------------------|----------|-----------|
+| cat > /dev/null                   | 1.489 s  | 0.039 s   |
+| getting path arg                  | 595.5 µs | 209.7 µs  |
+| file len                          | 617.0 µs | 242.3 µs  |
+| file len from summing read bytes  | 1.518 s  | 0.044 s   |
+| BufRead line lens                 | 43.734 s | 0.495 s   |
