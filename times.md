@@ -25,3 +25,4 @@ Change: 2026-02-13 20:09:34.037357316 -0500
 | BufRead line lens                 | 43.734 s | 0.495 s   |
 | count \n bytes                    | 4.196 s  | 0.033 s   |
 | wc -l                             | 2.031 s  | 0.026 s   |
+| count \n bytes target-cpu=native  | 2.770 s  | 0.024 s   |
