@@ -26,3 +26,4 @@ Change: 2026-02-13 20:09:34.037357316 -0500
 | count \n bytes                    | 4.196 s  | 0.033 s   |
 | wc -l                             | 2.031 s  | 0.026 s   |
 | count \n bytes target-cpu=native  | 2.770 s  | 0.024 s   |
+| count \n target-cpu=native simd   | 2.106 s  | 0.029 s   |
