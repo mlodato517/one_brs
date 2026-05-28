@@ -1,5 +1,5 @@
 build:
-  RUSTFLAGS="-C target-cpu=native" cargo +nightly build --release
+  RUSTFLAGS="-C target-cpu=native" cargo build --release
 
 [default]
 run: build
