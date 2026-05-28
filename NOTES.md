@@ -2,12 +2,11 @@
 
 ## TODOs
 
-* Count newlines but add a copyback operation where we move the trailing bytes
-  after the last detected newline to the beginning of the buffer so they're
-  processed on the next loop (because those bytes would be part of the next
-  weather station name)
+* "Do math" to see if copyback penalty is expected
 * Find indexes of semicolons and newlines
 * Parse numbers and add them all up
+* Store weather station names efficiently
+* Come up with branchless way of tracking copyback_len
 
 ## Simd equivalent of `Iterator::position()`
 
