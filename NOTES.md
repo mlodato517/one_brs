@@ -42,3 +42,11 @@ that numbers are always between a semicolon and a newline).
 It seems to us that `shift_elements_left()` doesn't work with a non-const index,
 so we're not sure how that's going to work. Perhaps the match statement in the
 code block above.
+
+## Videos about back of the envelope performance calculations
+
+- [Mike Acton's Seminal talk][mike_acton]
+- [One of Casey Muratori's many videos][casey_muratori]
+
+[casey_muratori]: https://www.youtube.com/watch?v=Ge3aKEmZcqY&t=3241s
+[mike_acton]: https://www.youtube.com/watch?v=rX0ItVEVjHc&t=1988s
