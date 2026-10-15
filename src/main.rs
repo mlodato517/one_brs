@@ -42,3 +42,36 @@ fn main() {
     }
     println!("{}", lines);
 }
+
+#[cfg_attr(not(test), expect(unused))]
+fn parse_fixed(input: [u8; 5]) -> i16 {
+    let frac = (input[4] - b'0') as i16;
+    let ones = (input[2] - b'0') as i16;
+    let tens = (input[1] - b'0') as i16;
+    let num = frac + 10 * ones + 100 * tens;
+    // We use the ASCII character after '+' to indicate negative so that input[0] - b'+' is 0 if
+    // the number is positive (hence, we multiply by zero and don't add anything to change the
+    // sign) or 1 if the number is negative (hence, we add negative twice the number to make it
+    // negative.
+    let sign = -(num << 1) * (input[0] - b'+') as i16;
+
+    num + sign
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_parse_fixed() {
+        dbg!((-20_i16).wrapping_sub(20_i16));
+        let input = [b'+', b'0', b'1', b'.', b'0'];
+        assert_eq!(parse_fixed(input), 10);
+
+        let input = [b'+' + 1 /* negative */, b'0', b'2', b'.', b'0'];
+        assert_eq!(parse_fixed(input), -20);
+
+        let input = [b'+', b'3', b'0', b'.', b'1'];
+        assert_eq!(parse_fixed(input), 301);
+    }
+}
